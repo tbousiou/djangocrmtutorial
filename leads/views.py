@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from leads.models import Lead
 
 # Create your views here.
@@ -10,16 +11,20 @@ class LeadListView(ListView):
 
 class LeadDetailView(DetailView):
     model = Lead
-    context_object_name = 'lead'
+    #context_object_name = 'lead'
 
 class LeadCreateView(CreateView):
     model = Lead
     template_name = "leads/lead_create.html"
-    fields = ['first_name', 'last_name', 'agent']
+    fields = ['first_name', 'last_name', 'age', 'agent']
 
 class LeadUpdateView(UpdateView):
     model = Lead
-    fields = ['first_name', 'last_name', 'agent']
+    template_name = "leads/lead_update.html"
+    fields = ['first_name', 'last_name', 'age', 'agent']
 
-# def lead_list(request):
-#     return render(request, "leads/lead_list.html")
+class LeadDeleteView(DeleteView):
+    model = Lead
+    template_name = "leads/lead_delete.html"
+    success_url = reverse_lazy('leads:lead-list')
+

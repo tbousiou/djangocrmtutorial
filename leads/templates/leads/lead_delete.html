@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p><a href="{% url 'leads:lead-detail' lead.pk %}">Go back to lead</a></p>
+
+    <h1>Confirm delete</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        {{ form.as_p }}
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock content %}
+
+
+
