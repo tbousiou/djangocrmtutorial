@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <p><a href="{% url 'leads:lead-list' %}">Go back to list</a></p>
+
+    <div class="d-flex justify-content-between p-2 mt-4">
+        <h1>Lead Details</h1>
+        <div>
+            <span><a href="{% url 'leads:lead-update' lead.pk %}" class="btn btn-success">Update</a></span>
+            <span><a href="{% url 'leads:lead-delete' lead.pk %}" class="btn btn-danger">Delete</a></span>
+        </div>
+        
+    </div>
+
+    <hr>  
     
-    <h1>Lead Details</h1>
-    <p>First name: {{ lead.first_name }}<br>
-        Last name:{{ lead.last_name }}<br>
-        Age: {{lead.age}}
-    </p>
-    <p><a href="{% url 'leads:lead-update' lead.pk %}">Update</a></p>
-    <p><a href="{% url 'leads:lead-delete' lead.pk %}">Delete</a></p>
+    <div class="row">
+        <div class="col">
+            <h5>{{ lead.first_name }} {{ lead.last_name }}</h5>
+            <p>First name: {{ lead.first_name }}</p>
+            <p>Last name:{{ lead.last_name }}</p>
+            <p>Age: {{lead.age}}
+            </p>
+        </div>
+        <div class="col text-center">
+            <img src="{% static 'leads/avatar.svg' %}" width="250px" alt="Sample Image">
+        </div>
+    </div>
+    
+
 {% endblock content %}

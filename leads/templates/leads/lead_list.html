@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    <p><a href="{% url 'leads:lead-create' %}">Create lead</a></p>
 
-    <h1>Leads list</h1
-    <ul>
-        {% for lead in leads %}
-            <li><a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }} {{ lead.age }}</a></li>
-        {% endfor %}
-    </ul>
+<div class="d-flex justify-content-between p-2 mt-4">
+    <h1>Leads list</h1>
+    <span><a href="{% url 'leads:lead-create' %}" class="btn btn-primary">Create lead</a></span>
+</div>
+
+<hr>
+
+<div class="row row-cols-2 g-4"> 
+    {% for lead in leads %}
+        <div class="col">
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img src="{% static 'leads/avatar.svg' %}" alt="Sample Image">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <h5>{{ lead.first_name }} {{ lead.last_name }}</h5>
+                    <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+                    <a href="{% url 'leads:lead-detail' lead.pk %}">View lead</a>
+                </div>
+            </div>
+        </div>
+           
+    {% endfor %}
+</div>
+
 {% endblock content %}

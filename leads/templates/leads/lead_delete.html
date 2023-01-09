@@ -8,7 +8,7 @@
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ object }}"?</p>
         {{ form.as_p }}
-        <input type="submit" value="Confirm">
+        <input type="submit" value="Confirm" class="btn btn-danger">
     </form>
 {% endblock content %}
 
