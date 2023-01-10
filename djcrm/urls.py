@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import LandindPageView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandindPageView.as_view(), name='landing-page'),
     path('leads/',  include('leads.urls', namespace="leads")),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
