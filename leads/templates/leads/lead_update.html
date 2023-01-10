@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
+{# Load the tag library #}
+{% load bootstrap5 %}
+
 {% block content %}
     <p><a href="{% url 'leads:lead-detail' lead.pk %}">Go back to {{ lead.first_name}}</a></p>
     
     <h1>Lead Update</h1>
     <form method="POST" >
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit">
+        {% bootstrap_form form %}
+
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Update</button>
+        {% endbuttons %}
     </form>
 {% endblock content %}

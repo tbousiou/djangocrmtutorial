@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{# Load the tag library #}
+{% load bootstrap5 %}
+
 {% block content %}
     <p><a href="{% url 'leads:lead-detail' lead.pk %}">Go back to lead</a></p>
 
@@ -7,8 +10,11 @@
     <form method="post">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ object }}"?</p>
-        {{ form.as_p }}
-        <input type="submit" value="Confirm" class="btn btn-danger">
+        {% bootstrap_form form %}
+
+        {% buttons %}
+            <button type="submit" class="btn btn-danger">Confirm delete</button>
+        {% endbuttons %}
     </form>
 {% endblock content %}
 
